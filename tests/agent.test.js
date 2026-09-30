@@ -1,0 +1,11 @@
+const assert=require('assert');
+const {analyze,mins,fmt}=require('../app.js');
+assert.equal(mins('7:30 pm'),1170);
+assert.equal(fmt(1170),'7:30 PM');
+const r=analyze('Plan my evening: dinner by 7:30 pm, laundry, 30 minutes of study, lights out by 10:30 pm.');
+assert(r.scheduled.length>=3,'expected extracted tasks');
+assert(r.scheduled.every((t,i,a)=>i===0||t.start>=a[i-1].end),'tasks must not overlap');
+assert(r.scheduled.at(-1).end<=r.end,'plan must stay inside inferred window');
+const tight=analyze('I have 45 minutes before guests arrive. Prioritize kitchen, living room, and a quick snack without overloading me.');
+assert(tight.scheduled.length>=3,'expected guest-prep tasks');
+console.log('All HomePilot agent tests passed.');
