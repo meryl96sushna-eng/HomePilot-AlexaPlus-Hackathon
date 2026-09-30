@@ -1,0 +1,12 @@
+{
+  "name": "homepilot-alexaplus-hackathon",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/agent.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
